@@ -1,5 +1,24 @@
 local recipient = "Ghadisha";
-local trackedItems = {"Zulian Coin","Razzashi Coin","Hakkari Coin","Sandfury Coin","Skullsplitter Coin","Bloodscalp Coin","Gurubashi Coin","Vilebranch Coin""Witherbark Coin","Red Hakkari Bijou","Green Hakkari Bijou","Blue Hakkari Bijou","Purple Hakkari Bijou","Bronze Hakkari Bijou","Silver Hakkari Bijou","Gold Hakkari Bijou","Orange Hakkari Bijou","Yellow Hakkari Bijou"};
+local trackedItems = {
+    "Zulian Coin",
+    "Razzashi Coin",
+    "Hakkari Coin",
+    "Sandfury Coin",
+    "Skullsplitter Coin",
+    "Bloodscalp Coin",
+    "Gurubashi Coin",
+    "Vilebranch Coin",
+    "Witherbark Coin",
+    "Red Hakkari Bijou",
+    "Green Hakkari Bijou",
+    "Blue Hakkari Bijou",
+    "Purple Hakkari Bijou",
+    "Bronze Hakkari Bijou",
+    "Silver Hakkari Bijou",
+    "Gold Hakkari Bijou",
+    "Orange Hakkari Bijou",
+    "Yellow Hakkari Bijou"
+};
 
 local function tableIncludes (tab, val)
     for index, value in ipairs(tab) do
