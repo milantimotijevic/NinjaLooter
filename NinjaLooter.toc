@@ -1,0 +1,5 @@
+## Interface: 11304
+## Title : NinjaLooter
+## Notes: Auto master-loots items to a lucky bstrd...
+## Author: Thorniel
+core.lua
