@@ -1,4 +1,4 @@
-local recipient = "Thorniel";
+local recipient = "Ghadisha";
 local trackedItems = {"Battlesmasher of the Monkey"};
 
 local function tableIncludes (tab, val)
@@ -11,20 +11,17 @@ local function tableIncludes (tab, val)
     return false
 end
 
--- Util methods
-local splitStr = function (inputstr, sep)
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-        table.insert(t, str)
-    end
-    return t
-end
-
 -- Declare frame
 local f = CreateFrame("Frame");
 
 f:RegisterEvent("LOOT_OPENED");
     f:SetScript("OnEvent", function(self, event, msg, author, language, lineId, senderGUID)
+        local groupType;
+
+        if IsInRaid("LE_PARTY_CATEGORY_HOME") then groupType = "RAID" else if IsInGroup("LE_PARTY_CATEGORY_HOME") then groupType = "PARTY" end;
+
+        if groupType == nil then return end;
+
         local lootInfo = GetLootInfo();
         
         for lootIndex, lootWrapper in ipairs(lootInfo) do
@@ -34,7 +31,7 @@ f:RegisterEvent("LOOT_OPENED");
                 
                 if candidate then
                     if candidate == recipient then
-                        SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate, "RAID");
+                        SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate, groupType);
                         GiveMasterLoot(lootIndex, raidIndex);
                     end
                 end
@@ -42,4 +39,4 @@ f:RegisterEvent("LOOT_OPENED");
         end
     end)
 
-
+print("<NinjaLooter> Successfully loaded. Recipient set to " .. recipient);
