@@ -46,14 +46,15 @@ f:RegisterEvent("LOOT_OPENED");
         local lootInfo = GetLootInfo();
         
         for lootIndex, lootWrapper in ipairs(lootInfo) do
-
-            for raidIndex=1, 40 do 
-                local candidate = GetMasterLootCandidate(lootIndex, raidIndex);
-                
-                if candidate then
-                    if candidate == recipient then
-                        SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate, groupType);
-                        GiveMasterLoot(lootIndex, raidIndex);
+            if tableIncludes(trackedItems, lootWrapper.item) then
+                for raidIndex=1, 40 do 
+                    local candidate = GetMasterLootCandidate(lootIndex, raidIndex);
+                    
+                    if candidate then
+                        if candidate == recipient then
+                            SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate, groupType);
+                            GiveMasterLoot(lootIndex, raidIndex);
+                        end
                     end
                 end
             end
@@ -61,3 +62,11 @@ f:RegisterEvent("LOOT_OPENED");
     end)
 
 print("<NinjaLooter> Successfully loaded. Recipient set to " .. recipient);
+
+-- Declare slash command
+SLASH_NINJALOOTER1 = "/ninjalooter"
+-- Declare slash handler
+SlashCmdList["NINJALOOTER"] = function(inp)
+    recipient = inp;
+    print("<NinjaLooter> Recipient set to " .. recipient);
+end
