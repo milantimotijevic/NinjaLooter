@@ -18,9 +18,11 @@ f:RegisterEvent("LOOT_OPENED");
     f:SetScript("OnEvent", function(self, event, msg, author, language, lineId, senderGUID)
         local groupType;
 
-        if IsInRaid("LE_PARTY_CATEGORY_HOME") then groupType = "RAID" else if IsInGroup("LE_PARTY_CATEGORY_HOME") then groupType = "PARTY" end;
+        if IsInGroup("LE_PARTY_CATEGORY_HOME") then groupType = "PARTY" end
 
-        if groupType == nil then return end;
+        if IsInRaid("LE_PARTY_CATEGORY_HOME") then groupType = "RAID" end
+
+        if groupType == nil then return end
 
         local lootInfo = GetLootInfo();
         
