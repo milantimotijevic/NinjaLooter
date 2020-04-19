@@ -1,4 +1,4 @@
-local recipient = "Oglock";
+local recipient = "Thorniel";
 local trackedItems = {"Battlesmasher of the Monkey"};
 
 local function tableIncludes (tab, val)
@@ -34,7 +34,8 @@ f:RegisterEvent("LOOT_OPENED");
                 
                 if candidate then
                     if candidate == recipient then
-                        SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate);
+                        SendChatMessage("<NinjaLooter> Automatically assigning " .. lootWrapper.item .. " to " .. candidate, "RAID");
+                        GiveMasterLoot(lootIndex, raidIndex);
                     end
                 end
             end
